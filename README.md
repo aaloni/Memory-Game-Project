@@ -1,9 +1,8 @@
 # Memory Game Project
 
-## Table of Contents
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+## Modified by Abdullah Almutairi for Udacity Fend nanodegree project
+## Provided by Misk Udacity
 
 ## Instructions
 
