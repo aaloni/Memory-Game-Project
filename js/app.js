@@ -27,7 +27,8 @@ document.querySelector('.restart').addEventListener("click", function(){
   location.reload();
 });
 
-function producecards(card) //Create card list by JS
+//Create card list by JS
+function producecards(card) 
 {
   return `<li class="card" data-card="${card}">
   <i class="fa ${card}"></i>
@@ -46,7 +47,8 @@ function shuffle(array) {
   return array;
 }
 
-function startgame() // The start game function
+function startgame()
+ // The start game function
 {
   let thedeck=document.querySelector('.deck');
   let htmlcards=shuffle(thecards).map(function(card)
@@ -55,20 +57,26 @@ function startgame() // The start game function
   });
   thedeck.innerHTML=htmlcards.join('');
 }
-function startTimer()// Timer function
+// Timer function
+function startTimer()
 {
   timeCount += 1;
   sectimer.innerText=timeCount;
   timeCount2=setTimeout(startTimer, 1000);
 }
-cards.forEach(function(card){ // Create the listening function
+ // Create the listening function
+cards.forEach(function(card){
   card.addEventListener('click', function(e){
     if (!card.classList.contains('open') && !card.classList.contains('match') && !card.classList.contains('show')){
-      opencards.push(card);//Count open cards
+      //Count open cards
+      opencards.push(card);
       card.classList.add('open','show');
-      steps+= 1;//Count moves
-      stepscounter.innerText=steps; // display moves
-      if (steps==5) // rating stars
+      //Count moves
+      steps+= 1;
+      // display moves
+      stepscounter.innerText=steps; 
+      // rating stars
+      if (steps==5) 
       {
         starlevel.innerHTML=(`<li><i class="fa fa-star"></i><i class="fa fa-star"></li>`);
       }
@@ -76,12 +84,14 @@ cards.forEach(function(card){ // Create the listening function
       {
         starlevel.innerHTML=(`<li></i><i class="fa fa-star"></i></li>`);
       }
-      if (!started)// start timer function
+      // start timer function
+      if (!started)
       {
         started = true;
         setTimeout(startTimer);
       }
-      if (opencards.length ==2) // open just two cards
+      // open just two cards
+      if (opencards.length ==2) 
       {
         if (opencards[0].dataset.card==opencards[1].dataset.card) // Matching method
         {
@@ -92,7 +102,8 @@ cards.forEach(function(card){ // Create the listening function
           opencards[1].classList.add('open');
           opencards[1].classList.add('show');
           opencards=[];
-          solvedCount++;// Count matched cards
+          // Count matched cards
+          solvedCount++;
         }
         else
         {
@@ -103,21 +114,24 @@ cards.forEach(function(card){ // Create the listening function
               card.classList.remove('open','show');
             });
             opencards=[];
-          },500); // Wait till close the cards
+            // Wait till close the cards
+          },500); 
         }
-
       }
     }
-    if (solvedCount == 8)// Msg appear if finish the game
+    // Msg appear if finish the game
+    if (solvedCount == 8)
     {
       clearTimeout(timeCount2);
       if (confirm(`You Won after ${steps} moves in ${timeCount} Seconds!! Do you want to play again?`))
       {
-        location.reload();//Play again
+        //Play again
+        location.reload();
       }
       else
       {
-        clearTimeout(timeCount2);//Do not play again
+        //Do not play again
+        clearTimeout(timeCount2);
         txt = "You pressed Cancel!";
       }
     }
